@@ -1,2 +1,5 @@
 dataset/
 __pycache__/
+paths.csv
+paths2.csv
+dataset2/
