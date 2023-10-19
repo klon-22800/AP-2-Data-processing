@@ -1,6 +1,8 @@
 import os
 import csv
 
+from progress.bar import IncrementalBar
+
 
 def get_absolute_paths(num_mark: int, folder_name: str) -> list[str]:
     absolute_path = os.path.abspath(f'{folder_name}')
@@ -22,19 +24,19 @@ def get_relative_paths(num_mark: int, folder_name: str) -> list[str]:
     return relative_paths
 
 
-def make_csv(folder_name:str) -> None:
+def make_csv(folder_name: str) -> None:
+    bar = IncrementalBar('Writting csv', max=5000)
     f = open("paths.csv", 'w')
     writer = csv.writer(f, delimiter=',', lineterminator='\n')
     for i in range(1, 6):
         absolute_paths = get_absolute_paths(i, f'{folder_name}')
         relative_paths = get_relative_paths(i, f'{folder_name}')
         for absolute_path, relative_path in zip(absolute_paths, relative_paths):
+            bar.next()
             writer.writerow([absolute_path, relative_path, str(i)])
 
 
 def main() -> None:
-    # print(get_absolute_paths(1))
-    # print(get_relative_paths(1))
     make_csv('dataset')
 
 

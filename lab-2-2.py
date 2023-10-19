@@ -2,9 +2,12 @@ import os
 import csv
 import shutil
 
+from progress.bar import IncrementalBar
+
 
 def rename(new_folder_name: str) -> None:
     for i in range(1, 6):
+        bar = IncrementalBar(f'Renaming class_{i}', max=1000)
         relative_path = os.path.relpath(f'{new_folder_name}')
         class_path = os.path.join(relative_path, str(i))
         names = os.listdir(class_path)
@@ -16,6 +19,7 @@ def rename(new_folder_name: str) -> None:
             new_relative_paths.append(
                 os.path.join(relative_path, f'{i}_{name}'))
         for old_name, new_name in zip(relative_paths, new_relative_paths):
+            bar.next()
             os.replace(old_name, new_name)
         os.chdir(f'{new_folder_name}')
 
@@ -32,6 +36,7 @@ def move_dataset(old_folder_name: str, new_folder_name: str) -> None:
 
 
 def new_make_csv(new_folder_name: str) -> None:
+    bar = IncrementalBar(f'Writting csv', max=5000)
     work_catalog = os.getcwd()
     os.chdir(new_folder_name)
     names = os.listdir()
@@ -45,6 +50,7 @@ def new_make_csv(new_folder_name: str) -> None:
         relative_path = os.path.relpath(f'{new_folder_name}')
         relative_path_file = os.path.join(relative_path, name)
         writer.writerow([absolute_path_file, relative_path_file, num_class])
+        bar.next()
 
 
 def main() -> None:
