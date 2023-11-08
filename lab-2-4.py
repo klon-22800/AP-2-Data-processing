@@ -2,6 +2,9 @@ import os
 
 
 def next(num_class: str) -> str:
+    """
+    The function returns the next element path by class label
+    """
     path = os.path.join('dataset', num_class)
     class_names = os.listdir(path)
     class_names.append(None)
