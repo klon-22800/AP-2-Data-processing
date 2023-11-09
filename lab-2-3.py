@@ -7,9 +7,13 @@ from progress.bar import IncrementalBar
 
 
 def rename(new_folder_name: str) -> dict:
-    """
-    The function renames files and changes the hierarchy, 
-    returns a dictionary in the format: key - file path, value - class label
+    """The function renames files and changes the hierarchy, 
+
+    Args:
+        new_folder_name (str): path to destination directory
+
+    Returns:
+        dict: key - file path, value - class label
     """
     random_numbers = random.sample(range(0, 10001), 5000)
     count = 0
@@ -41,8 +45,11 @@ def rename(new_folder_name: str) -> dict:
 
 
 def move_dataset(old_folder_name: str, new_folder_name: str) -> None:
-    """
-    The function copies files to a new directory
+    """The function copies files to a new directory
+
+    Args:
+        old_folder_name (str): path to source directory
+        new_folder_name (str): path to destination directory
     """
     old_path = os.path.relpath(f'{old_folder_name}')
     new_path = os.path.relpath(f'{new_folder_name}')
@@ -50,8 +57,11 @@ def move_dataset(old_folder_name: str, new_folder_name: str) -> None:
 
 
 def make_csv_random(new_folder_name: str, class_number: dict) -> None:
-    """
-    The function writes data to a csv file in the following format: absolute path, relative path, class label
+    """The function writes data to a csv file in the following format: absolute path, relative path, class label
+
+    Args:
+        new_folder_name (str): path to destination directory
+        class_number (dict): key - file path, value - class label
     """
     bar = IncrementalBar(f'Writting csv', max=5000)
     work_catalog = os.getcwd()

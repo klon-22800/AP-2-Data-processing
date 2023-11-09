@@ -1,9 +1,19 @@
 import os
 
+from typing import Optional
 
-def next(num_class: str) -> str:
-    """
-    The function returns the next element path by class label
+
+def next(num_class: str) -> Optional[str]:
+    """The function returns the next element path by class label
+
+    Args:
+        num_class (str): class label
+
+    Returns:
+        Optional[str]: path to file
+
+    Yields:
+        Iterator[Optional[str]]: path to file 
     """
     path = os.path.join('dataset', num_class)
     class_names = os.listdir(path)
