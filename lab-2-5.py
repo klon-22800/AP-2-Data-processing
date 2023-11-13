@@ -5,7 +5,7 @@ from typing import Optional
 
 
 class Iterator:
-    def __init__(self, num_class) -> None:
+    def __init__(self, num_class: str) -> None:
         """constructor of Iterator
 
         Args:
